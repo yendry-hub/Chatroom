@@ -1,0 +1,164 @@
+Backend Setup
+Step 1: Initialize the Node.js Project
+First, make sure you have Node.js installed. Then, create a new directory for your project and initialize it:
+
+bash
+
+mkdir chat-app
+cd chat-app
+npm init -y
+
+Step 2: Install Dependencies
+Install Express and Socket.io:
+
+
+npm install express socket.io
+
+Step 3: Create the Server (server.js)
+Create a file named server.js and add the following code:
+
+javascript
+
+const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
+const path = require('path');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
+
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    socket.on('chat message', (msg) => {
+        io.emit('chat message', msg);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+Frontend Setup
+Step 4: Update HTML (public/index.html)
+Create a directory named public in the root of your project. Inside the public directory, create index.html and add the following code:
+
+html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="theme-toggle" class="theme-toggle">
+        <button id="light-theme-button" class="theme-button">Light Theme</button>
+        <button id="dark-theme-button" class="theme-button">Dark Theme</button>
+    </div>
+    <div id="username-container" class="username-container">
+        <input type="text" id="username-input" class="username-input" placeholder="Enter your username" />
+        <button id="username-button" class="username-button">Join Chat</button>
+    </div>
+    <div id="chat-container" class="chat-container" style="display: none;">
+        <div id="chat-box" class="chat-box"></div>
+        <input type="text" id="chat-input" class="chat-input" placeholder="Type a message..." />
+        <button id="send-button" class="send-button">Send</button>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+Step 5: Update CSS (public/styles.css)
+Copy the previously provided CSS into public/styles.css.
+
+Step 6: Update JavaScript (public/script.js)
+Create public/script.js and add the following code:
+
+javascript
+
+const socket = io();
+
+document.getElementById('username-button').addEventListener('click', enterChat);
+document.getElementById('light-theme-button').addEventListener('click', () => switchTheme('light'));
+document.getElementById('dark-theme-button').addEventListener('click', () => switchTheme('dark'));
+
+function enterChat() {
+    const usernameInput = document.getElementById('username-input');
+    const username = usernameInput.value.trim();
+    if (username !== '') {
+        sessionStorage.setItem('username', username);
+        document.getElementById('username-container').style.display = 'none';
+        document.getElementById('chat-container').style.display = 'flex';
+    }
+}
+
+document.getElementById('send-button').addEventListener('click', sendMessage);
+document.getElementById('chat-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+function sendMessage() {
+    const chatInput = document.getElementById('chat-input');
+    const message = chatInput.value.trim();
+    if (message !== '') {
+        const username = sessionStorage.getItem('username');
+        socket.emit('chat message', `${username}: ${message}`);
+        chatInput.value = '';
+    }
+}
+
+socket.on('chat message', (msg) => {
+    const chatBox = document.getElementById('chat-box');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = msg;
+    messageElement.classList.add('message');
+    chatBox.appendChild(messageElement);
+    chatBox.scrollTop = chatBox.scrollHeight;
+});
+
+function switchTheme(theme) {
+    if (theme === 'dark') {
+        document.body.classList.add('dark');
+    } else {
+        document.body.classList.remove('dark');
+    }
+}
+
+Explanation
+Backend:
+
+We use Express to serve static files and Socket.io to handle real-time communication.
+When a user connects, a message is logged. Messages are broadcast to all users via io.emit.
+Frontend:
+
+The HTML and CSS remain largely the same, with a few adjustments for real-time communication.
+The JavaScript now includes a connection to the Socket.io server. When a message is sent, it is emitted to the server, which then broadcasts it to all connected clients.
+Running the Application
+Start the Server:
+
+bash
+
+node server.js
+
+Open the Application:
+Open your web browser and navigate to http://localhost:3000.
+Now, multiple users can join the chat room, enter their usernames, and chat with each other in real-time.
+
+
+
+
+
+
