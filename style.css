@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+textarea {
+    width: 100vw;
+    box-sizing: border-box;
+    height: calc(100vh - 40px);
+    border: none;
+    border-bottom: 1px solid black;
+    resize: none;
+}
+#input {
+    position: absolute;
+    padding: 5px 10px;
+    font-size: 18px;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    box-sizing: border-box;
+    border: none;
+    width: 100vw;
+}
+dialog {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+dialog::backdrop {
+    display: block;
+    content: '';
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.4);
+}
