@@ -1,38 +1,46 @@
 body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    font-family: sans-serif;
+    background-color: #f4f4f9;
 }
-textarea {
-    width: 100vw;
+
+.chat-container {
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-box {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    overflow-y: auto;
+    border-bottom: 1px solid #ccc;
+}
+
+.chat-input {
+    border: none;
+    padding: 15px;
+    width: calc(100% - 80px);
     box-sizing: border-box;
-    height: calc(100vh - 40px);
-    border: none;
-    border-bottom: 1px solid black;
-    resize: none;
 }
-#input {
-    position: absolute;
-    padding: 5px 10px;
-    font-size: 18px;
-    bottom: 0;
-    left: 0;
-    height: 40px;
-    box-sizing: border-box;
+
+.send-button {
+    padding: 15px;
+    background-color: #007bff;
+    color: white;
     border: none;
-    width: 100vw;
+    cursor: pointer;
 }
-dialog {
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-dialog::backdrop {
-    display: block;
-    content: '';
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background: rgba(0, 0, 0, 0.4);
+
+.send-button:hover {
+    background-color: #0056b3;
 }
