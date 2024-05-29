@@ -5,42 +5,83 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f4f4f9;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.chat-container {
+.username-container, .chat-container {
     width: 400px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    padding: 20px;
+    background-color: var(--container-background-color);
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.username-input, .chat-input {
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+}
+
+.username-button, .send-button, .theme-button {
+    padding: 10px 20px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.username-button:hover, .send-button:hover, .theme-button:hover {
+    background-color: var(--button-hover-background-color);
 }
 
 .chat-box {
     flex: 1;
-    padding: 20px;
-    background-color: white;
+    width: 100%;
+    margin-bottom: 10px;
     overflow-y: auto;
-    border-bottom: 1px solid #ccc;
-}
-
-.chat-input {
-    border: none;
-    padding: 15px;
-    width: calc(100% - 80px);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
     box-sizing: border-box;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
 }
 
-.send-button {
-    padding: 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
-.send-button:hover {
-    background-color: #0056b3;
+:root {
+    --background-color: #f4f4f9;
+    --text-color: #000;
+    --border-color: #ccc;
+    --container-background-color: #fff;
+    --input-background-color: #fff;
+    --button-background-color: #007bff;
+    --button-text-color: #fff;
+    --button-hover-background-color: #0056b3;
+}
+
+body.dark {
+    --background-color: #333;
+    --text-color: #fff;
+    --border-color: #555;
+    --container-background-color: #444;
+    --input-background-color: #555;
+    --button-background-color: #007bff;
+    --button-text-color: #fff;
+    --button-hover-background-color: #0056b3;
 }
