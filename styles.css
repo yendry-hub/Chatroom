@@ -58,6 +58,26 @@ body {
     color: var(--text-color);
 }
 
+.message {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+}
+
+.message.self {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.message.other {
+    background-color: #f1f0f0;
+    align-self: flex-start;
+    text-align: left;
+}
+
 .theme-toggle {
     position: absolute;
     top: 20px;
@@ -84,4 +104,14 @@ body.dark {
     --button-background-color: #007bff;
     --button-text-color: #fff;
     --button-hover-background-color: #0056b3;
+}
+
+body.dark .message.self {
+    background-color: #065d8d;
+    color: white;
+}
+
+body.dark .message.other {
+    background-color: #444;
+    color: white;
 }
