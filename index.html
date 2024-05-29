@@ -1,7 +1,18 @@
-<textarea id="output" readonly/></textarea>
-<input id="input" placeholder="message"/>
-<dialog id="dialog">
-    <p>Pick your username:</p>
-    <input id="username" placeholder="username"/>
-    <button id="set_user">ok</button>
-</dialog>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box"></div>
+        <input type="text" id="chat-input" class="chat-input" placeholder="Type a message..." />
+        <button id="send-button" class="send-button">Send</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
