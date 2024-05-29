@@ -7,7 +7,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="chat-container">
+    <div id="theme-toggle" class="theme-toggle">
+        <button id="light-theme-button" class="theme-button">Light Theme</button>
+        <button id="dark-theme-button" class="theme-button">Dark Theme</button>
+    </div>
+    <div id="username-container" class="username-container">
+        <input type="text" id="username-input" class="username-input" placeholder="Enter your username" />
+        <button id="username-button" class="username-button">Join Chat</button>
+    </div>
+    <div id="chat-container" class="chat-container" style="display: none;">
         <div id="chat-box" class="chat-box"></div>
         <input type="text" id="chat-input" class="chat-input" placeholder="Type a message..." />
         <button id="send-button" class="send-button">Send</button>
@@ -15,4 +23,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
